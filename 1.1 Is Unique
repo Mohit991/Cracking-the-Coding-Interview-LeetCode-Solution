@@ -6,5 +6,8 @@ class Solution:
             if n in memo:
                 return True
             memo.add(n)
-        return False    
+        return False  
+    
+    # TC - O(n)
+    # SC - O(n)
         
