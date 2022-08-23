@@ -1,0 +1,74 @@
+class Solution:
+    def oneEditAway(self, s, t):
+        if s == t: return True
+        diff = abs(len(s) - len(t))
+        if diff>1:  return False
+        if diff == 0:
+            return self.oneEditReplace(s,t)
+        else: 
+            if len(s)>len(t):
+                return self.oneEditInsert(s,t)
+            else: return self.oneEditInsert(t,s)
+            
+    def oneEditReplace(self, s, t):  
+        oneEdit = False
+        for i in range(len(s)):
+            if s[i] != t[i]:
+                if oneEdit:
+                    return False
+                oneEdit = True  
+        return True
+            
+    def oneEditInsert(self, bigger, smaller):
+        i, j = 0, 0 
+        oneEdit = False
+        while i<len(bigger) and j<len(smaller):
+            if bigger[i] != smaller[j]:
+                if oneEdit:
+                    return False
+                oneEdit = True
+                i += 1
+            else:
+                i += 1
+                j += 1
+        return True  
+        
+    
+s = Solution()    
+print(s.oneEditAway('ban', 'band'))
+#Above is the modularized solution. TC - O(len of smaller string)   
+
+
+################################### Non-Modular Code ################################################
+
+class Solution:
+    def oneEditAway(s,t):
+        if s == t: return True
+        diff = abs(len(s) - len(t))
+        if diff>1:  return False
+        if diff == 0:
+            oneEdit = False
+            for i in range(len(s)):
+                if s[i] != t[i]:
+                    if oneEdit:
+                        return False
+                    oneEdit = True  
+                    
+        else:
+            bigger = s if len(s)>len(t) else t
+            smaller = s if len(s)<len(t) else t
+            i, j = 0, 0 
+            oneEdit = False
+            while i<len(bigger) and j<len(smaller):
+                if bigger[i] != smaller[j]:
+                    if oneEdit:
+                        return False
+                    oneEdit = True
+                    i += 1
+                else:
+                    i += 1
+                    j += 1
+        return True  
+        
+    print(oneEditAway('bnnd', 'band'))
+
