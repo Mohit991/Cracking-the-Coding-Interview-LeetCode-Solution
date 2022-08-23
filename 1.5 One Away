@@ -71,4 +71,35 @@ class Solution:
         return True  
         
     print(oneEditAway('bnnd', 'band'))
+    
+    
+    ##########################################################################
+    # Without If Else
+    
+    class Solution:
+    def oneEditAway(s,t):
+        if s == t: return True
+        diff = abs(len(s) - len(t))
+        if diff>1:  return False
+        bigger = s if len(s)>len(t) else t
+        smaller = t if len(s)>len(t) else s
+        i, j = 0, 0 
+        oneEdit = False
+        while i<len(bigger) and j<len(smaller):
+            if bigger[i] != smaller[j]:
+                if oneEdit:
+                    return False
+                oneEdit = True
+                if len(bigger) != len(smaller):
+                    i += 1
+                else:
+                    i += 1
+                    j += 1 
+            else:
+                i += 1
+                j += 1
+        return True  
+        
+    print(oneEditAway('bnsdd', 'band'))
+    
 
