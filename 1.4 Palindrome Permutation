@@ -1,0 +1,58 @@
+class Solution:
+
+    def isPossible(self, S):
+        memo = {}
+        oddCount = 0
+        for c in S:
+            if c in memo:
+                memo[c] += 1
+                if memo[c] % 2 == 1:
+                    oddCount += 1
+                else:
+                    oddCount -= 1
+            else:
+                memo[c] = 1
+                oddCount += 1
+        
+        return oddCount <= 1
+        
+        #######################################################################
+        
+        # memo = {}
+        # for c in S:
+        #     if c in memo:
+        #         memo[c] += 1
+        #     else:
+        #         memo[c] = 1
+        # oddFlag = False   
+        # oddChar = ''
+        # for c in S:
+        #     if memo[c]%2 != 0:
+        #         if oddFlag and oddChar != c:
+        #             return 0
+        #         oddChar = c
+        #         oddFlag = True
+        # return 1  
+        
+        ########################################################################
+        
+        # memo = {}
+        # unique = set()
+        # for c in S:
+        #     unique.add(c)
+        #     if c in memo:
+        #         memo[c] += 1
+        #     else:
+        #         memo[c] = 1
+        # oddFlag = False   
+        # for c in unique:
+        #     if memo[c]%2 != 0:
+        #         if oddFlag and oddChar != c:
+        #             return 0
+        #         oddChar = c
+        #         oddFlag = True
+        # return 1 
+        
+        
+        # TC - O(n)
+        # SC - O(n)
