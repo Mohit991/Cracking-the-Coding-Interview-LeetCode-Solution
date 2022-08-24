@@ -1,24 +1,25 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:  
         i, j = 0, 0
-        c = 1
-        l = 0
+        count = 1
+        length = 0
         while i<len(chars):
             if i<len(chars)-1 and chars[i] == chars[i+1]:
-                c += 1
+                count += 1
             else:
                 chars[j] = chars[i]
                 j += 1
-                l += 1
-                if c>1:
-                    for a in str(c):
-                        chars[j] = a
+                length += 1
+                if count>1:
+                    for chr in str(count):
+                        chars[j] = chr
                         j += 1
-                        l += 1
-                c = 1     
+                        length += 1
+                count = 1     
             i += 1      
             
-        return l    
+        return length    
+   
         
         #In the above code we convert the count to string using str() method. 
         
