@@ -1,3 +1,8 @@
+#This is a two step process.
+
+#1.Find the transpose of the matrix
+#2.Swap the columns of the transposed matrix
+
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
@@ -23,5 +28,42 @@ class Solution:
                 temp = matrix[i][j]
                 matrix[i][j] = matrix[i][n-j-1]
                 matrix[i][n-j-1] = temp
+        # print(matrix)
+        
+        
+        
+        #################################################################
+        #for anti clock wise rotation, we have same logic just a little difference:
+        #For anti clock wise rotation, there is not much difference just that instead of swapping columns in the second step, now you will now swap rows.
+        #This is a two step process.
+        #1. Find the transpose of the matrix
+        #2.Swap the rows of the transposed matrix
+        
+ class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        #for anti clock wise rotation
+        n = len(matrix)
+        #this is a n*n matrix
+        
+        #Step 1: Find the transpose of the matrix
+        for i in range(n):
+            for j in range(i, n):
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[j][i]
+                matrix[j][i] = temp
+        # print(matrix)
+        
+        
+        #Step 2: Swap the rows such that swap first and last row, swap second and second last row
+        #make sure you run i till n/2, otherwise you will swap last and first row, 
+        # swap second last and second row, so matrix will become the same again. 
+        for j in range(n):
+            for i in range(n//2):
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[n-i-1][j]
+                matrix[n-i-1][j] = temp 
         # print(matrix)
         
