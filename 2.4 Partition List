@@ -1,0 +1,83 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+###################################################################
+#With Extra Space
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        #below are the two boundary cases
+        if head == None: return None
+        if head.next == None: return head
+        
+        #These are two lists dummy1 will contains nodes with values greater 
+        #than or equal to x
+        #dummy2 will contains nodes with values less than or equal to x
+        dummy1 = ListNode()
+        dummy2 = ListNode()
+        p1 = dummy1
+        p2 = dummy2
+        
+        while head != None:
+            if head.val >= x:
+                newNode = ListNode()
+                newNode.val = head.val
+                p1.next = newNode
+                p1 = p1.next
+            else:
+                newNode = ListNode()
+                newNode.val = head.val
+                p2.next = newNode
+                p2 = p2.next
+            head = head.next
+        #attach the two LLs and make sure to remove the dummy nodes.    
+        p2.next = dummy1.next
+        return dummy2.next
+        
+
+############################################################
+#Without Using Extra Space
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        #below are the two boundary cases
+        if head == None: return None
+        if head.next == None: return head
+        
+        #find out the length of the LL
+        #temp variable will be pointing to the last node in the linked list 
+        #we will attach nodes with value greater than or equal to x after temp.
+        temp = head
+        length = 1
+        while temp.next != None:
+            length += 1
+            temp = temp.next
+        
+        #we need this dummy at the start if in case we have to delete the first node of LL
+        #lets set up the variables
+        dummy = ListNode()
+        dummy.next = head
+        t = head
+        prev = dummy
+        
+        #we will run the loop length times
+        for i in range(length):
+            a = t
+            t = t.next
+            #pic up every node and immediatly move t to next node.
+            #we val of that node is greater than the given x then we need to delete
+            #this node and attach it at the end of the LL.
+            if a.val>=x:
+                #temp == a means we are trying to move the same node to the end
+                #of the list which is alreay at the end, so skip if that is the case
+                if temp == a:
+                    continue
+                #below we delete the node and attach it at the end.    
+                prev.next = a.next
+                a.next = None
+                temp.next = a
+                temp = temp.next
+            else:
+                prev = prev.next   
+            
+        return dummy.next    
