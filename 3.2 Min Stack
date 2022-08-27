@@ -1,0 +1,59 @@
+#using single 2d array
+class MinStack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, val: int) -> None:
+        curMin = self.getMin()
+        if curMin == None or curMin > val:
+            self.stack.append([val, val])
+        else: self.stack.append([val, curMin]) 
+        
+    def pop(self) -> None:
+        self.stack.pop()
+
+    def top(self) -> int:
+        if not self.stack: return None
+        return self.stack[-1][0]
+
+    def getMin(self) -> int:
+        if not self.stack: return None
+        return self.stack[-1][1]
+
+
+
+
+#using 2 arrays
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if self.minStack == []:
+            self.minStack.append(val)
+        else:
+            minVal = self.minStack[-1]
+            if val < minVal:
+                self.minStack.append(val)
+            else:
+                self.minStack.append(minVal)
+
+    def pop(self) -> None:
+        self.minStack.pop()
+        self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
