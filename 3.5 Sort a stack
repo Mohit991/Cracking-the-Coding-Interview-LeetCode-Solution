@@ -1,0 +1,46 @@
+class Solution:
+    # your task is to complete this function
+    # function sort the stack such that top element is max
+    # funciton should return nothing
+    # s is a stack
+    def sorted(self, s):
+        # Code here
+        sortedStack = []
+        
+        #we will create another stack and we will push elements from out current
+        #stack to that stack. if the element we want to push is smaller than 
+        #the element at the top or sortedStack is empty then we will push onto the 
+        #sorted stack. 
+        #if that is not the case then we will repeatedly pop from sortedStack and
+        #push those elements onto the original stack s until 
+        #we find an element that is greater than our element. 
+        #then on top of that we will push our element at the sortedStack.
+        #when we are done with this process then we will pop all elements from 
+        #from the sortedStack and push them onto s which is empty.
+        while s:
+            x = s.pop()
+            if not sortedStack or sortedStack[-1] > x:
+                sortedStack.append(x)
+            else:
+                while sortedStack and sortedStack[-1] < x:
+                    y = sortedStack.pop()
+                    s.append(y)
+                sortedStack.append(x)
+                
+        while sortedStack:
+            s.append(sortedStack.pop())
+#{ 
+ # Driver Code Starts
+if __name__=='__main__':
+    t = int(input())
+    for i in range(t):
+        n = int(input())
+        arr = list(map(int, input().strip().split()))
+        ob = Solution()
+        ob.sorted(arr)
+        for e in range(len(arr)):
+            print(arr.pop(), end=" ")
+        print()
+
+
+# } Driver Code Ends
