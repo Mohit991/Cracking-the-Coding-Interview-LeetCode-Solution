@@ -1,0 +1,83 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        #cornor case
+        if headA == None or headB == None: return None
+        
+        #initilise variables
+        lengthA = 1
+        lengthB = 1
+        t1 = headA
+        t2 = headB
+        
+        #find length of 1st LL
+        while t1.next != None:
+            lengthA += 1
+            t1 = t1.next
+        
+        #find length of 2nd LL
+        while t2.next != None:
+            lengthB += 1
+            t2 = t2.next
+        
+        #if tails of the two LLs dont match then we know that they dont intersect at all
+        #for that we write the below condition
+        if t1 != t2:
+            return None
+        
+        #intilise more variables
+        big, small = None, None
+        chopOff = 0
+        
+        #find bigger and smaller LL also chop off value
+        if lengthA>=lengthB:
+            big = headA
+            small = headB
+            chopOff = lengthA - lengthB
+        else:
+            big = headB
+            small = headA
+            chopOff = lengthB - lengthA
+        
+        #chop off the bigger list 
+        for i in range(chopOff):
+            big = big.next
+        
+        #now go through both the lists and find the intersecting node
+        while big!= None and small!= None:
+            if big == small:
+                return big
+            big, small = big.next, small.next
+        
+        #return Null if not found
+        return None
+
+    
+# def getIntersectionNode(self, headA, headB):
+# if headA and headB:
+#     A, B = headA, headB
+#     while A!=B:
+#         A = A.next if A else headB
+#         B = B.next if B else headA
+#     return A
+    
+    
+# def getIntersectionNode(self, headA, headB):    
+#         s = set()
+#         temp1 = headA
+#         while temp1 != None:
+#             s.add(temp1)
+#             temp1 = temp1.next
+        
+#         temp2 = headB
+#         while temp2 != None:
+#             if temp2 in s:
+#                 return temp2
+#             temp2 = temp2.next
+#         else: return None    
+            
