@@ -1,0 +1,62 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        #Main problem here is that if we apply simple dfs or bfs, for every node we will
+        #have to go through the entire edges list. That is the bottleneck.
+        #In order to remove that we will create a dictionary ie the adjecency list
+        #By using adj list we will significantly improve the complexity. 
+        
+        adjList = defaultdict(list)
+        
+        for i in edges:
+            adjList[i[0]].append(i[1])
+            adjList[i[1]].append(i[0])  
+        # We go through all the edges and add each edge in two lists. 
+        # keep in mind that it is bi-directional graph. So, (u,v) edge means edge from u -> v
+        # and edge from v -> u.
+        
+        #Now apply BFS
+        queue = [source]
+        visited = set()
+        
+        while queue:
+            node = queue.pop(0)
+            visited.add(node)
+            if node == destination: return True
+            for adjecent in adjList[node]:
+                if adjecent not in visited:
+                    queue.append(adjecent)
+        #if after the BFS is over and we still could not find the destination
+        #that means path is not possible and we return false. 
+        return False            
+
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        # Main problem here is that if we apply simple dfs or bfs, for every node we will
+        #have to go through the entire edges list. That is the bottleneck.
+        #In order to remove that we will create a dictionary ie the adjecency list
+        #By using adj list we will significantly improve the complexity. 
+        
+        adjList = defaultdict(list)
+        
+        for i in edges:
+            adjList[i[0]].append(i[1])
+            adjList[i[1]].append(i[0]) 
+        We go through all the edges and add each edge in two lists. 
+        # keep in mind that it is bi-directional graph. So, (u,v) edge means edge from u -> v
+        # and edge from v -> u.
+        
+        visited = set()
+        
+        #Now apply DFS
+        def dfs(node):
+            if node == destination:
+                return True
+            for adj in adjList[node]:
+                if adj not in visited:
+                    visited.add(adj)
+                    if dfs(adj):
+                        return True
+            return False        
+                    
+        return dfs(source)           
+                    
