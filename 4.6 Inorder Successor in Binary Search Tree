@@ -1,0 +1,64 @@
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self, val, k):
+        self.right = None
+        self.data = val
+        self.left = None
+        self.key = k
+'''
+class Solution:
+    # returns the inorder successor of the Node x in BST (rooted at 'root')
+    def inorderSuccessor(self, root, x):
+        # Code here
+        node = []
+        def inorder(root):
+            if not root: return 
+            inorder(root.left)
+            node.append(root)
+            inorder(root.right)
+        
+        inorder(root)    
+        for i in range(len(node)-1):
+            if node[i].data == x.data:
+                return node[i+1]
+                
+        return None
+        
+ ##############################################################################################
+ 
+ def inOrderSuccessor(root, n):
+     
+    # Step 1 of the above algorithm
+    if n.right is not None:
+        return minValue(n.right)
+ 
+    # Step 2 of the above algorithm
+    succ=Node(None)
+     
+     
+    while( root):
+        if(root.data<n.data):
+            root=root.right
+        elif(root.data>n.data):
+            succ=root
+            root=root.left
+        else:
+            break
+    return succ
+ 
+# Given a non-empty binary search tree,
+# return the minimum data value
+# found in that tree. Note that the
+# entire tree doesn't need to be searched
+def minValue(node):
+    current = node
+ 
+    # loop down to find the leftmost leaf
+    while(current is not None):
+        if current.left is None:
+            break
+        current = current.left
+ 
+    return current
