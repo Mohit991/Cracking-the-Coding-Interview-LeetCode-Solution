@@ -1,0 +1,32 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root: return None
+        #We will apply BFS and get the level order traversal. 
+        
+        q = [root]
+        depthLists = []
+        #Note that we dont create a visited set here, that is because trees do not have any 
+        #cycles, so we dont have to worry about if we have seen the node before or not. 
+        
+        while q:
+            qLength = len(q)
+            currentLevel = []
+            #We have a loop below to get access to each level.
+            #We want to store each level nodes in a list and then we add that list to our 
+            #depthLists list. 
+            
+            for i in range(qLength):
+                node = q.pop(0)
+                currentLevel.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)  
+            depthLists.append(currentLevel)
+        return depthLists 
