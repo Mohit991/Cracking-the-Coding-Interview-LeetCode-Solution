@@ -1,0 +1,40 @@
+# class Solution(object):
+#     ans = None
+#     def lowestCommonAncestor(self, root, p, q):
+        
+#         def dfs(root):
+#             if root == None:
+#                 return root
+            
+#             left = dfs(root.left)
+#             right = dfs(root.right)
+            
+#             if left and right or ((left or right) and root in [p,q]):
+#                 self.ans = root
+            
+#             if root == p or root == q:
+#                 return True
+            
+#             if left or right:
+#                 return True
+            
+#         dfs(root)    
+#         return self.ans 
+
+##############################################################################
+
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        if root == None: return None
+        if root == p or root == q:
+            return root
+        
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+   
+        if left == None: return right
+        if right == None: return left
+        
+        return root
+    #TC - O(n)
+    #SC - O(n)
