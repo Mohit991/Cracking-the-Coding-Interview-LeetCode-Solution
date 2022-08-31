@@ -1,0 +1,50 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        #This function finds the subroot ie the root of the second tree in the first tree ie root.
+        def findSubtree(root):
+            if root == None: return False
+            
+            #If you find the subroot ie root of the other tree then call the sameTree()    
+            #and check if the two are same or not
+            #if same tree returns true then return true else continue your search
+            if root.val == subRoot.val:
+                if sameTree(root, subRoot): return True
+                
+            left = findSubtree(root.left)
+            right = findSubtree(root.right)
+            
+            if left or right: return True
+            return False
+        
+        #This function compares the two trees whose roots are given and tells
+        #if they are same or not
+        def sameTree(root1, root2):
+            if root1 == None and root2 == None:
+                return True
+            if (root1 and not root2) or (not root1 and root2) or root1.val != root2.val:
+                return False
+            # if root1 == None and root2 != None:
+            #     return False
+            # if root1 != None and root2 == None:
+            #     return False
+            # if root1.val != root2.val:
+            #     return False
+            
+            left = sameTree(root1.left, root2.left)
+            right = sameTree(root1.right, root2.right)
+            
+            if left and right: return True
+            return False
+         
+            
+        return findSubtree(root)
+
+
+        
+        
