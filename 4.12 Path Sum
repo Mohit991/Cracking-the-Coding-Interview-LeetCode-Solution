@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        #If there is no root then we simply return false because with root = None
+        #no target sum is possible at all.
+        if not root:
+            return False
+        
+        #Here if for some node left child is none and right child is none and also the value at root 
+        #is equal to target sum that means we have found a branch which gives us a total sum
+        #equal to target sum. 
+        #Keep in mind that we never go after the leef node ie root will never be None 
+        #because we stop at any node whose left and right child are none. 
+        #So the top condition is only true iff the root of the entire tree is None. 
+        if not root.left and not root.right and targetSum == root.val:
+            return True
+        
+        #We decrase the targetSum by the root value
+        targetSum -= root.val
+        
+        #if left or right branch gives us true the return tre else return false.
+        #if both give false that means that target sum is not possible and we return false.
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
+
+        
