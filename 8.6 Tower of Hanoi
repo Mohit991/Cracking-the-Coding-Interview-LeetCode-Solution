@@ -1,0 +1,12 @@
+#Tower of hanoi problem
+
+def towerOfHanoi(n, sourceTower, destinationTower, bufferTower):
+    if n == 0:
+        return
+    
+    towerOfHanoi(n-1, sourceTower, bufferTower, destinationTower)
+    print("Move disk ", n, " from ", sourceTower, "to ", destinationTower)
+    towerOfHanoi(n-1, bufferTower, destinationTower, sourceTower)
+    
+    
+towerOfHanoi(5, "Source Tower", "Destination Tower", "Buffer Tower")    
