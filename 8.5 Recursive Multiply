@@ -1,0 +1,45 @@
+# def mul(x,y,res):
+#     if y == 0:
+#         return res
+#     return mul(x, y-1, res+x)
+# print(mul(45,10,0))    
+    
+# def mul(x,y):
+#     if y == 0:
+#         return 0
+#     return x + mul(x, y-1)
+# print(mul(5,8))    
+
+
+def mul(bigger, smaller):
+    #Below condition is only possible is smaller is passed as 0 to the function
+    #It is not possible any other way, that is why we return 0 
+    #If 0 is passed as smaller then return 0
+    if smaller == 0:
+        return 0 
+        
+    #If smaller is 1 that means we have reached the end of recursion 
+    #so we return bigger
+    if smaller == 1:
+        return bigger
+    
+    #Divide smaller by 2 and then call mul with s and bigger    
+    s = smaller >> 1
+    halfProduct = mul(s, bigger)
+    
+    #If smaller is even in the current stack then we just need to add halfProduct twice
+    if smaller % 2 == 0:
+        return halfProduct + halfProduct
+    #If smaller is odd in the current stack then we need to add halfProduct twice and bigger as well.
+    #BC smaller being odd means we only passed its even value and 1 bigger is left
+    #So we add that.
+    else:
+        return halfProduct + halfProduct + bigger
+    
+a = 79
+b = 32
+#find smaller and bigger, this is important for this algorithm to work
+bigger = a if a>b else b 
+smaller = a if a<b else b
+
+print(mul(bigger, smaller))
