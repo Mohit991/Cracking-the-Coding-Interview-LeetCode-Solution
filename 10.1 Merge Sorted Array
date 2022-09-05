@@ -1,0 +1,48 @@
+#This solution shifts element and is not the best solution
+# class Solution:
+#     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+#         """
+#         Do not return anything, modify nums1 in-place instead.
+#         """
+        
+#         #This solution shifts element
+#         i, j = 0, 0
+        
+#         while i<(m+n) and j<n:
+            
+#             if nums1[i]>=nums2[j]:
+#                 for k in range(m+n-1, i, -1):
+#                     nums1[k] = nums1[k-1]
+#                 nums1[i] = nums2[j]
+#                 j += 1
+#             else:
+#                 i += 1
+                
+#         k = m+n-1
+#         j = n-1
+        
+#         while k>=0 and j>=0 and nums1[k] < nums2[j]:
+#             nums1[k] = nums2[j]
+#             k -= 1
+#             j -= 1
+            
+   
+ #####################################################################
+#This solution is much faster becuase we start from top to bottom
+#hence no shifting is needed. 
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        index1 = m-1 #index of nums1
+        index2 = n-1 #index of nums2
+        writeIndex = m+n-1 #index to copy element
+        
+        #At each iteration copy the element which is greater of the two and copy
+        #it to the write index.
+        while index2 >= 0:
+            if index1 >= 0 and nums1[index1] > nums2[index2]:
+                nums1[writeIndex] = nums1[index1]
+                index1 -= 1
+            else:
+                nums1[writeIndex] = nums2[index2]
+                index2 -= 1
+            writeIndex -= 1
