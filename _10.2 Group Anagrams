@@ -1,0 +1,64 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        #This list will contain all the strings in str but sorted.
+        sortedStr = []
+        #This loop does that
+        for i in range(len(strs)):
+            sortedStr.append(sorted(strs[i]))
+        
+        ans = []
+        
+        #This set tells us if we have added this string to ans or not.
+        s = set()
+        for i in range(len(strs)):
+            if strs[i] not in s:
+                #This list will contain all the anagrams for the current string
+                temp = [strs[i]]
+                sortedCurrentString = sorted(strs[i])
+                for j in range(i+1, len(sortedStr)):
+                    #To compare we use the sortedStr list.
+                    if sortedCurrentString == sortedStr[j]:
+                        temp.append(strs[j]) 
+                        s.add(strs[j])
+                #Add current list to the ans.
+                ans.append(temp)        
+        return ans    
+ 
+
+ #########################################################################################
+    
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        #Create a dictionary, key and value is a list. 
+        ans = defaultdict(list)
+        
+        #Go through every string
+        for string in strs:
+            #Sort that string
+            sortedString = sorted(string)
+            #push that original string into the dictionary value and key is the sorted string.
+            #Because sorted of all the strings which are anagrams will be the same.
+            ans[tuple(sortedString)].append(string)
+        
+        #return the list of values.
+        return ans.values()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
