@@ -1,0 +1,52 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        #We will treat this 2D array as a 1D array. 
+        row = len(matrix)
+        col = len(matrix[0])
+        total = row * col
+        
+        #if matrix is empty return false
+        if row == 0 and col == 0:
+            return False
+        
+        #Initilize left and right
+        left = 0
+        right = total
+        
+        
+        while left < right:
+            mid = left + (right - left) // 2
+            
+            #from the mid, find the correct row(i) and correct column(j)
+            i = mid // col
+            j = mid % col
+            
+            #Use the generic Binary Seach template. 
+            if matrix[i][j] == target:
+                return True
+            
+            if matrix[i][j] < target:
+                left = mid + 1
+            else:
+                right = mid
+        
+        return False         
+            
+        
+#Below is the generic binary search template which can be used i many problems.
+
+def binary_search(array) -> int:
+    def condition(value) -> bool:
+        pass
+
+    left, right = 0, len(array)
+    while left < right:
+        mid = left + (right - left) // 2
+        if condition(mid):
+            right = mid
+        else:
+            left = mid + 1
+    return left
+                
+            
+        
