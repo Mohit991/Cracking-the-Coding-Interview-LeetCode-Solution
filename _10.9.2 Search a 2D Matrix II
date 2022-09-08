@@ -1,0 +1,78 @@
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        #We will start from the first row and last col. ie 15 in example 1
+        #If the value is bigger than target then we move towards left 
+        #ie we do column - 1, we move left in column
+        #if the element is less than target then we know that target is in that col.
+        #so move in the col by doing row + 1
+        
+        #TC - O(row+col)
+        row = 0
+        col = len(matrix[0]) - 1
+        
+        while col>=0 and row<len(matrix):
+            if matrix[row][col] == target:
+                return True
+            
+            if matrix[row][col] > target:
+                col -= 1
+            else:
+                row += 1
+                
+        return False        
+                
+##########################################################
+
+#We are going to apply the same logic but here we will start from the last row and first col. 
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        row = len(matrix) - 1
+        col = 0 
+        
+        while row >= 0 and col < len(matrix[0]):
+            if matrix[row][col] == target:
+                return True
+            
+            if matrix[row][col] > target:
+                row -= 1
+            else:
+                col += 1
+
+
+        return False
+
+
+#############################################################
+
+#In this approch we will apply binary search on each row.
+#We will go through all the rows. If the element lies in that row then we will use binary search
+#to find that element in that row.
+#TC - O(row * log col)
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        row = len(matrix)
+        col = len(matrix[0])
+        
+        for row in matrix:
+            if row[0] <= target <= row[-1]:
+                left = 0
+                right = col
+                
+                while left<right:
+                    mid = left + (right - left) // 2
+                    if row[mid] == target:
+                        return True
+                    
+                    if row[mid] > target:
+                        right = mid
+                    else:
+                        left = mid + 1
+                    
+        return False        
+        
+        
+        
+        
+        
