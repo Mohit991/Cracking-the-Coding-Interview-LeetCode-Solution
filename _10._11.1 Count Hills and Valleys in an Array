@@ -1,8 +1,13 @@
+You will be able to understand the solution using the comments. 
+Let me know if any questions. 
+
+
 class Solution:
     def countHillValley(self, nums: List[int]) -> int:
-        #Here we will keep track of the left neighbour 
         hillValley  = 0 
-        #Initially left neighbour is the left 0th element. 
+		
+		#Here we will keep track of the left neighbour 
+        #Initially left neighbour is the 0th element. 
         leftNeighbour = nums[0]
         
         #We will apply a loop from 1st index to second last index becuase for any element to be a 
@@ -21,4 +26,4 @@ class Solution:
                 leftNeighbour = nums[i]
                 hillValley  += 1
                 
-        return hillValley   
+        return hillValley
