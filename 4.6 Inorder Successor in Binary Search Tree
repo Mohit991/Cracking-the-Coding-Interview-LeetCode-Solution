@@ -1,7 +1,7 @@
 #User function Template for python3
 
 '''
-class Node:
+class Node:       
     def __init__(self, val, k):
         self.right = None
         self.data = val
