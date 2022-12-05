@@ -1,6 +1,6 @@
 #Explanation:    
 # dfs(nums = [1,2,3], index = 0, path = [], res = [])
-# |
+# | 
 # |__ dfs(nums = [1,2,3], index = 1 , path = [1], res = [[]])
 # |    |__ dfs(nums = [1,2,3], index = 2 , path = [1,2], res = [[],[1]])
 # |    	  |__ dfs(nums = [1,2,3], index = 3 , path = [1,2,3], res = [[],[1], [1,2]])
