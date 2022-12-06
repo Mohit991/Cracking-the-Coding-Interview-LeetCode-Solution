@@ -1,6 +1,6 @@
 class Solution: 
     def oneEditAway(self, s, t): 
-        if s == t: return True
+        if s == t: return True  
         diff = abs(len(s) - len(t))
         if diff>1:  return False
         if diff == 0:
