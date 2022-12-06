@@ -1,4 +1,4 @@
-class Solution:
+class Solution: 
     def oneEditAway(self, s, t):
         if s == t: return True
         diff = abs(len(s) - len(t))
