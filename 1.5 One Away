@@ -1,5 +1,5 @@
 class Solution: 
-    def oneEditAway(self, s, t):
+    def oneEditAway(self, s, t): 
         if s == t: return True
         diff = abs(len(s) - len(t))
         if diff>1:  return False
