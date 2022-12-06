@@ -1,5 +1,5 @@
 # Topological Sort is Easy -- The General Template
-# 
+#  
 # What we need ?
 # 1. Map inDegree: A in-degree map, which record each nodes in-degree.
 # 2. Map graph: A graph map which record the Node's children
