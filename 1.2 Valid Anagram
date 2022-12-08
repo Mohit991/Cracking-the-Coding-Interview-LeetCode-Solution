@@ -4,7 +4,7 @@ class Solution:
         memo = {}
         for i in s:
             if i in memo:
-                memo[i] += 1
+                memo[i] += 1 
             else:
                 memo[i] = 1
                 
