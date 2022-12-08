@@ -5,6 +5,7 @@ class Solution:
         s1 = s + s
         if goal in s1: return True         
         return False 
+        
   #####################################################   
     
 #         if s == goal: return True
