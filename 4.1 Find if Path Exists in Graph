@@ -1,4 +1,4 @@
-class Solution:
+class Solution:  
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
         #Main problem here is that if we apply simple dfs or bfs, for every node we will
         #have to go through the entire edges list. That is the bottleneck.
