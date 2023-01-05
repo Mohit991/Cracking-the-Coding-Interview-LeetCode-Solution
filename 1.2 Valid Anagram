@@ -12,7 +12,7 @@ class Solution:
             if i not in memo or memo[i] <= 0:
                 return False
             else:
-                memo[i] -= 1
+                memo[i] -= 1 
                 
         return True        
         
