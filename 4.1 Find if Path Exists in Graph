@@ -19,7 +19,7 @@ class Solution:
         visited = set()
         
         while queue:
-            node = queue.pop(0)
+            node = queue.pop(0) 
             visited.add(node)
             if node == destination: return True
             for adjecent in adjList[node]:
